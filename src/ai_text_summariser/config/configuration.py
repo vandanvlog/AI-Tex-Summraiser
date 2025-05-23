@@ -1,7 +1,9 @@
 from ai_text_summariser.constants import * 
 from ai_text_summariser.utils.common import read_yaml, create_directories
 from ai_text_summariser.logging import logger
-from ai_text_summariser.entity import (DataIngestionConfig,DataValidationConfig)
+from ai_text_summariser.entity import (DataIngestionConfig,
+                                       DataValidationConfig,
+                                       DataTransformationConfig)
 
 from pathlib import Path
 
@@ -45,3 +47,17 @@ class ConfigurationManager:
         )
 
         return data_validation_config
+    
+
+    def get_data_transformation_config(self) -> DataTransformationConfig:
+        config = self.config.data_transformation
+
+        create_directories([config.root_dir])
+
+        data_transformation_config = DataTransformationConfig(
+            root_dir=config.root_dir,
+            data_path=config.data_path,
+            tokenizer_name = config.tokenizer_name
+        )
+
+        return data_transformation_config
