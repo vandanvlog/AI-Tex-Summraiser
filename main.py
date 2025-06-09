@@ -2,7 +2,7 @@ from ai_text_summariser.pipline.stage_01_dataingestion import DataIngestionTrain
 from ai_text_summariser.logging import logger
 from ai_text_summariser.pipline.stage_02_datavalidation import DataValidationTrainingPipline
 from ai_text_summariser.pipline.stage_03_datatransformation import DataTransformationTrainingPipline
-
+from ai_text_summariser.pipline.stage_04_model_trainner import ModelTrainnerTrainingPipline
 
 STAGE_NAME = "Data Ingestion Stage"
 try:
@@ -37,4 +37,14 @@ except Exception as e:
     raise e
 
 
+
+STAGE_NAME = "Model Trainner Stage"
+try:
+    logger.info(f">>> stage {STAGE_NAME} is strted <<<")
+    model_trainner = ModelTrainnerTrainingPipline()
+    model_trainner.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<")
+except Exception as e:
+    logger.exception(e)
+    raise e
 
