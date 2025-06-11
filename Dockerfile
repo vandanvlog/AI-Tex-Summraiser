@@ -1,7 +1,5 @@
 FROM python:3.8-slim-buster
 
-# Install build tools and awscli
-RUN apt update -y && apt install -y gcc g++ build-essential awscli
 
 WORKDIR /app
 
